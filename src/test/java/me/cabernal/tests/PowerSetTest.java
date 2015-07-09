@@ -11,7 +11,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests for power set application
+ * Unit tests for {@link PowerSet} functionality
  */
 public class PowerSetTest {
 
@@ -80,6 +80,4 @@ public class PowerSetTest {
 		// make sure we have seen all members of the power set
 		assertTrue(ps2.isEmpty());
 	}
-
-	// TODO: Test remaining methods
 }

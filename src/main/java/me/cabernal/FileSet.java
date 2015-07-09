@@ -58,7 +58,6 @@ public class FileSet {
 			while ((line = reader.readLine()) != null) {
 				// split line by specified delimeter
 				String[] members = line.split(delim.getValue());
-				// TODO: use loop instead?
 				inputSet.addAll(Arrays.asList(members));
 			}
 		} catch (IOException e) {

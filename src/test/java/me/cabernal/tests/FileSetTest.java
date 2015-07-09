@@ -16,17 +16,19 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * Unit tests {@link FileSet} functionality
+ */
 public class FileSetTest {
 	private final String[] testFiles = { "/CSVFile", "/EmptyFile", "/SmallFile" };
 	private final String setFileExtension = ".set";
-	private final String powersetFileExtension = ".superset"; // TODO: fix extension to .powerset
+	private final String powersetFileExtension = ".powerset";
 	private final String tmpFileExtension = ".tmp";
 	private final Delimeter delim = Delimeter.CSV;
 
 	@Test
 	public void testReadFileSet() throws IOException {
 		for (String filenamePrefix : testFiles) {
-			System.out.println("HELLLLLLO: " + getResourcePath("."));
 			Path setFile = Paths.get(getResourcePath(filenamePrefix + setFileExtension));
 			Path supersetFile = Paths.get(getResourcePath(filenamePrefix + powersetFileExtension));
 
