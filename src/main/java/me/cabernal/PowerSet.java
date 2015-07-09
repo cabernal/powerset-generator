@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Powerset functionality.
+ *
+ * Iterator was used in order to avoid loading entire superset in memory,
+ * and instead only load subset by subset.
+ */
 public class PowerSet<T> implements Iterable<Set<T>>, Iterator<Set<T>> {
 	// Array representation of set
 	private T[] array = null;
@@ -19,6 +25,7 @@ public class PowerSet<T> implements Iterable<Set<T>>, Iterator<Set<T>> {
 	}
 
 	public boolean hasNext() {
+		// if extra bit is set, then we have exhausted all subset combinations
 		return !mask.get(array.length);
 	}
 
@@ -40,6 +47,9 @@ public class PowerSet<T> implements Iterable<Set<T>>, Iterator<Set<T>> {
 		return this;
 	}
 
+	/**
+	 * Increment mask value using binary addition by 1
+	 */
 	private void incrementMaskValue() {
 		for (int i = 0; i < mask.size(); i++) {
 			// bit is unset, do not carry

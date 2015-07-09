@@ -9,7 +9,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Class representing formatted set within a text file.
+ */
 public class FileSet {
+	/**
+	 * Delimeter used to separate set members in a file.
+	 * CVS and TSV delimeters supported
+	 */
 	public enum Delimeter {
 		CSV(",", "csv"), TSV("\t", "tsv");
 
@@ -29,6 +36,11 @@ public class FileSet {
 			return type;
 		}
 
+		/**
+		 * Get the delimeter belonging to the specified type
+		 * @param type delimeter type
+		 * @return Delimeter delimeter
+		 */
 		public static Delimeter getDelimeter(String type) {
 			for (Delimeter s : values()) {
 				if (s.type.equals(type.toLowerCase()))
@@ -48,6 +60,11 @@ public class FileSet {
 		this.delim = delim;
 	}
 
+	/**
+	 * Read the entire set in the input file on to a String set
+	 *
+	 * @return Set<String> String set representing set contents of file
+	 */
 	public Set<String> readSet() {
 		BufferedReader reader = null;
 		Set<String> inputSet = new HashSet<String>();
@@ -74,10 +91,17 @@ public class FileSet {
 		return inputSet;
 	}
 
+	/**
+	 * Get the {@link PowerSet} of current input file
+	 * @return {@link PowerSet}
+	 */
 	public PowerSet<String> getPowerSet() {
 		return new PowerSet<String>(readSet());
 	}
 
+	/**
+	 * Write power set of current input file to specified output file.
+	 */
 	public void writePowerSet() {
 		BufferedWriter writer = null;
 		try {
