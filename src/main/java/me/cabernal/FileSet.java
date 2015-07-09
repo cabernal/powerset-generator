@@ -15,9 +15,6 @@ import java.util.Set;
  * TODO: 
  * - Verify file paths 
  * - Use string builder 
- * - Add third argument: set file format 
- * - Create output file if it dne - Finally Close -
- * Create FileSet(inFile, outFile, delimeter) - Change class name
  */
 public class FileSet {
 	public enum Delimeter {
