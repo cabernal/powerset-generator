@@ -57,6 +57,8 @@ public class PowerSetApp
 				inputSet.add(line);
 			}
 			
+			reader.close();
+			
 			PowerSet<String> powerSet = new PowerSet<String>(inputSet);
 			Charset charset = Charset.forName("US-ASCII");
 			BufferedWriter writer = Files.newBufferedWriter(outputFile, charset);
@@ -66,9 +68,11 @@ public class PowerSetApp
 				String[] subsetArray = new String[subset.size()];
 				subset.toArray(subsetArray);
 				String subsetString = String.join(",", subsetArray);
-				System.out.println("WRITING: " + subsetString);
 				writer.write(subsetString);
+				writer.newLine();
 			}
+			
+			writer.close();
 			
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
