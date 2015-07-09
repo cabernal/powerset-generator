@@ -11,11 +11,12 @@ Powerset generation program.
 ##Building
  * Compiling with tests: mvn package
  * Compile without tests: mvn package -DskipTest
+ * Running tests: mvn test
  * Cleaning: mvn clean
 
 ##Usage
  * java -cp target/powerset-tool-1.0-SNAPSHOT.jar me.cabernal.PowerSetApp \<input-file> \<output-file> \<file-format>
- * alternative: ./powerset.sh \<input-file> \<output-file> \<file-format>
+ * alternative (if bash is available): sh powerset.sh \<input-file> \<output-file> \<file-format>
  * input-file: csv or tsv file representing a set
  * output-file: power set file, each line containing subsets in csv or tsv format
  * file-format: csv or tsc (csv by default)
