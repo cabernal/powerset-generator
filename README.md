@@ -7,10 +7,12 @@ Powerset generation program.
 
 ##Dependencies
  * Built using Apache Maven 3.2.5 and OpenJDK 1.8.0
+
 ##Building
  * Compiling with tests: mvn package
  * Compile without tests: mvn package -DskipTest
  * Cleaning: mvn clean
+
 ##Usage
  * java -cp target/powerset-tool-1.0-SNAPSHOT.jar me.cabernal.PowerSetApp <input-file> <output-file> <file-format>
  * alternative: ./powerset <input-file> <output-file> <file-format>
