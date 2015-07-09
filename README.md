@@ -1,2 +1,6 @@
-# powerset-generator
-Powerset generator tool
+# Power Set Generator
+Powerset generation program
+
+##Dependencies
+##Building
+##Usage
