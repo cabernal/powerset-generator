@@ -17,7 +17,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class FileSetTest {
-	private final String[] testFiles = { "CSVFile", "EmptyFile", "SmallFile" };
+	private final String[] testFiles = { "/CSVFile", "/EmptyFile", "/SmallFile" };
 	private final String setFileExtension = ".set";
 	private final String powersetFileExtension = ".superset"; // TODO: fix extension to .powerset
 	private final String tmpFileExtension = ".tmp";
@@ -26,6 +26,7 @@ public class FileSetTest {
 	@Test
 	public void testReadFileSet() throws IOException {
 		for (String filenamePrefix : testFiles) {
+			System.out.println("HELLLLLLO: " + getResourcePath("."));
 			Path setFile = Paths.get(getResourcePath(filenamePrefix + setFileExtension));
 			Path supersetFile = Paths.get(getResourcePath(filenamePrefix + powersetFileExtension));
 
@@ -44,10 +45,7 @@ public class FileSetTest {
 			Path setFile = Paths.get(getResourcePath(filenamePrefix + setFileExtension));
 			Path powersetFile = Paths.get(getResourcePath(filenamePrefix + powersetFileExtension));
 			File tmpFile = File.createTempFile(filenamePrefix, tmpFileExtension);
-			Path outFile = Paths.get(tmpFile.getPath());
-			
-			
-			
+			Path outFile = Paths.get(tmpFile.getPath());			
 
 			StubFileSet testFileSet = new StubFileSet(setFile, outFile, delim);
 			testFileSet.writePowerSet();
@@ -67,7 +65,7 @@ public class FileSetTest {
 	 * @return String resource Path
 	 */
 	private String getResourcePath(String resource) {
-		return this.getClass().getResource(resource).getPath();
+		return getClass().getResource(resource).getPath();
 	}
 
 	/**
