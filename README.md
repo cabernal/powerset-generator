@@ -15,7 +15,7 @@ Powerset generation program.
 
 ##Usage
  * java -cp target/powerset-tool-1.0-SNAPSHOT.jar me.cabernal.PowerSetApp <input-file> <output-file> <file-format>
- * alternative: ./powerset <input-file> <output-file> <file-format>
+ * alternative: ./powerset \<input-file> <output-file> <file-format>
  * input-file: csv or tsv file representing a set
  * output-file: power set file, each line containing subsets in csv or tsv format
  * file-format: csv or tsc (csv by default)
