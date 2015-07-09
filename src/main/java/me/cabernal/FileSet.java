@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO: Use generics?
 /*
  * TODO: 
  * - Verify file paths 
@@ -60,7 +59,6 @@ public class FileSet {
 	public Set<String> readSet() {
 		BufferedReader reader = null;
 		Set<String> inputSet = new HashSet<String>();
-		System.out.println(delim.getValue());
 
 		try {
 			reader = Files.newBufferedReader(inFile);
@@ -68,6 +66,7 @@ public class FileSet {
 			while ((line = reader.readLine()) != null) {
 				// split line by specified delimeter
 				String[] members = line.split(delim.getValue());
+				// TODO: use loop instead?
 				inputSet.addAll(Arrays.asList(members));
 			}
 		} catch (IOException e) {
@@ -116,5 +115,4 @@ public class FileSet {
 			}
 		}
 	}
-
 }

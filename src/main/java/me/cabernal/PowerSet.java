@@ -6,10 +6,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class PowerSet<T> implements Iterable<Set<T>>, Iterator<Set<T>> {
+	// Array representation of set
 	private T[] array = null;
+	// Bit mask representation of current subset combination
 	private BitSet mask = null;
 
-	//TODO: use T[] insteadV
+	@SuppressWarnings("unchecked")
 	public PowerSet(Set<T> set) {
 		this.array = (T[]) set.toArray();
 		// extra bit to signal end of bit set
