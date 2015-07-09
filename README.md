@@ -6,7 +6,7 @@ Powerset generation program.
  * Suppots csv and tsv file formats.
 
 ##Dependencies
- * Built using Apache Maven 3.2.5 and OpenJDK 1.8.0
+ * Built using Apache Maven 3.2.5, OpenJDK 1.8.0 and JUnit 4.11
 
 ##Building
  * Compiling with tests: mvn package
