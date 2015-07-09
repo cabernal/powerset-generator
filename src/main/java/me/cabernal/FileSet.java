@@ -3,21 +3,15 @@ package me.cabernal;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-/*
- * TODO: 
- * - Verify file paths 
- * - Use string builder 
- */
 public class FileSet {
 	public enum Delimeter {
-		CSV(",", "csv"), TSV("\t", "tsv"), NEW_LINE("\n", "new_line");
+		CSV(",", "csv"), TSV("\t", "tsv");
 
 		private final String value;
 		private final String type;
@@ -40,8 +34,6 @@ public class FileSet {
 				if (s.type.equals(type.toLowerCase()))
 					return s;
 			}
-			// CSV is the default file format
-			// TODO: throw error instead? remove NEW_LINE
 			return CSV;
 		}
 	}
@@ -88,10 +80,9 @@ public class FileSet {
 	}
 
 	public void writePowerSet() {
-		Charset charset = Charset.forName("US-ASCII");
 		BufferedWriter writer = null;
 		try {
-			writer = Files.newBufferedWriter(outFile, charset);
+			writer = Files.newBufferedWriter(outFile);
 
 			for (Set<String> subset : getPowerSet()) {
 				// build formatted subset string
