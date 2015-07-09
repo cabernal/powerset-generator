@@ -1,64 +1,29 @@
 package me.cabernal;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
+
+import me.cabernal.FileSet.Delimeter;
 
 public class PowerSetApp {
+	public static final String usageMsg =
+			"usage: <program> <input-file> <output-file> [delimeter: csv]";
 
 	public static void main(String[] args) {
-		if (args.length != 2) {
-			System.err.println("usage: <program> <input-file> <output-file>");
+		// use CSV as default file format
+		Delimeter delim = Delimeter.CSV;
+		if (args.length < 2 || args.length > 3) {
+			System.err.println(usageMsg);
 			System.exit(1);
+		}
+
+		if (args.length == 3) {
+			delim = Delimeter.getDelimeter(args[2]);
 		}
 		Path inputFile = Paths.get(args[0]);
 		Path outputFile = Paths.get(args[1]);
 
-		/*
-		 * TODO: - Verify file paths - Use string builder - Add third argument:
-		 * set file format - Create output file if it dne - Finally Close -
-		 * Create FileSet(inFile, outFile, delimeter) - Change class name
-		 */
-
-		try {
-			BufferedReader reader = Files.newBufferedReader(inputFile);
-
-			// Assume newline separated values as our set format
-			String line = null;
-			Set<String> inputSet = new HashSet<String>();
-			while ((line = reader.readLine()) != null) {
-				System.out.println("READING: " + line);
-				inputSet.add(line);
-			}
-
-			reader.close();
-
-			PowerSet<String> powerSet = new PowerSet<String>(inputSet);
-			Charset charset = Charset.forName("US-ASCII");
-			BufferedWriter writer = Files
-					.newBufferedWriter(outputFile, charset);
-
-			for (Set<String> subset : powerSet) {
-				// write subset to file
-				String[] subsetArray = new String[subset.size()];
-				subset.toArray(subsetArray);
-				String subsetString = String.join(",", subsetArray);
-				writer.write(subsetString);
-				writer.newLine();
-			}
-
-			writer.close();
-
-		} catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
-			// TODO: Finally close
-		}
-
+		FileSet fileSet = new FileSet(inputFile, outputFile, delim);
+		fileSet.writePowerSet();
 	}
 }

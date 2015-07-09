@@ -11,6 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 //TODO: Use generics?
+/*
+ * TODO: - Verify file paths - Use string builder - Add third argument:
+ * set file format - Create output file if it dne - Finally Close -
+ * Create FileSet(inFile, outFile, delimeter) - Change class name
+ */
 public class FileSet {
 	public enum Delimeter {
 		CSV(","), TSV("\t"), NEW_LINE("\n");
@@ -21,8 +26,17 @@ public class FileSet {
 			this.delimeter = delimeter;
 		}
 
-		public String getDelimeter() {
+		public String getValue() {
 			return delimeter;
+		}
+
+		public static Delimeter getDelimeter(String delimStr) {
+			for (Delimeter s : values()) {
+				if (s.delimeter == delimStr)
+					return s;
+			}
+			// CSV is the default file format
+			return CSV;
 		}
 	}
 
@@ -45,7 +59,7 @@ public class FileSet {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				// split line by specified delimeter
-				String[] members = line.split(delim.getDelimeter());
+				String[] members = line.split(delim.getValue());
 				inputSet.addAll(Arrays.asList(members));
 			}
 		} catch (IOException e) {
@@ -73,10 +87,13 @@ public class FileSet {
 			writer = Files.newBufferedWriter(outFile, charset);
 
 			for (Set<String> subset : getPowerSet()) {
-				// write subset to file
+				// build formatted subset string
 				String[] subsetArray = new String[subset.size()];
 				subset.toArray(subsetArray);
-				String subsetString = String.join(",", subsetArray);
+				String subsetString = String
+						.join(delim.getValue(), subsetArray);
+
+				// write out string and separate subsets with new line
 				writer.write(subsetString);
 				writer.newLine();
 			}
